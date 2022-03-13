@@ -9,7 +9,7 @@ google-ID: ''
 menu:
 - {name: 'About',              url: 'about'}
 - {name: 'Projects',  url: 'sample-posts'}
-- {name: 'BVW Games', url: 'documentation'}
+- {name: 'BVW Games', url: 'bvw'}
 # - {name: 'Sample Posts',       url: 'sample-posts'}
 # - {name: 'Documentation',      url: 'documentation'}
 - {name: 'Contact',            url: 'contact'}
