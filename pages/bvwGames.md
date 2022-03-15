@@ -1,5 +1,5 @@
 ---
-layout: category
+layout: page
 title: BVW Games
 category: bvw
 permalink: /bvw
