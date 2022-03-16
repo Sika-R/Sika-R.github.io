@@ -2,10 +2,12 @@
 layout: page
 title: About
 permalink: /about
-output:
-    keep_tex: true
+output: 
+  beamer_presentation: 
+    keep_tex: yes
+header-includes:
+  - \usepackage{multicol}
 ---
-$$
 \begin{columns}[onlytextwidth,T]
   \begin{column}{.45\linewidth}
     \includegraphics[width=\linewidth]{assests/img/RobinXie.JPG}
@@ -14,7 +16,6 @@ $$
     Hi! My name is Yuchen Xie, and I go by Robin. I'm a current graduate studying at **Entertainment Technology Center(ETC)** of **Carnegie Mellon University.**
   \end{column}
 \end{columns}
-$$
 
 
 <!-- ![Robin Xie][photoByChris]
