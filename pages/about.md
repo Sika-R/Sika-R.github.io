@@ -4,7 +4,7 @@ title: About
 permalink: /about
 ---
 
-<img align="left" src="assests/img/RobinXie.JPG">
+<img align="left" src="{{ site.github.url }}/assets/img/RobinXie.JPG">
 
 Hi! My name is Yuchen Xie, and I go by Robin. I'm a current graduate studying at **Entertainment Technology Center(ETC)** of **Carnegie Mellon University.**
 <br clear="left"/>
