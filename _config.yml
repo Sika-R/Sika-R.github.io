@@ -2,7 +2,7 @@
 
 # jekyll-paginate configuration
 paginate:            5
-paginate_path:       "{{ site.github.url }}/_posts/page:num/"
+# paginate_path:       "{{ site.github.url }}/_posts/page:num/"
 
 # Build settings
 markdown:            kramdown
