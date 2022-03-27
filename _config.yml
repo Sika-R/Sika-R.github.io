@@ -9,11 +9,12 @@ highlighter:         rouge
 permalink:           /:title
 plugins:             [jekyll-paginate, jekyll-sitemap, jekyll-feed, jekyll-seo-tag]
 # hide_post_date:      true
-# hide_related_posts:  true
+hide_related_posts:  true
+hide_post_share:       true
 
 # Customise atom feed settings (this is where Jekyll-Feed gets configuration information)
 title:		           "Robin Xie's Page"
-# description:	       ""
+description:	       "Welcome to Robin's world!"
 # author:              "Robin Xie"
 
 # RSS 2.0 can be used instead of Atom by uncommenting following two lines
