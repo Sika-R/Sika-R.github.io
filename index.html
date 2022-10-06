@@ -34,14 +34,16 @@
       </div>
     </div>
     <script>
+      var lastSentMessage;
       function htmlOpenSerialPort() {
         connectSerial()
       }
       function htmlSendSerialLine(str) {
+        lastSentMessage = str;
         sendSerialLine(str)
       }
       function htmlReadFromPort(str) {
-        myGameInstance.SendMessage('DeviceConnection', 'ReadLine', str);
+        myGameInstance.SendMessage('DeviceConnection (1)', 'ReadLine', str);
         // readFromPort()
       }
 
@@ -105,8 +107,8 @@
         config.devicePixelRatio = 1;
         unityShowBanner('WebGL builds are not supported on mobile devices.');
       } else {
-        canvas.style.width = "960px";
-        canvas.style.height = "600px";
+        canvas.style.width = "1920px";
+        canvas.style.height = "1080px";
       }
       loadingBar.style.display = "block";
 
@@ -128,11 +130,10 @@
       };
       document.body.appendChild(script);
     </script>
-    <button class="active" style="color: rgb(60, 255, 1);" onclick="location.href='../../../settings.html'">&#9881;</button>
+    <!--<button class="active" style="color: rgb(60, 255, 1);" onclick="location.href='../../../settings.html'">&#9881;</button>
     <button class="active" style="color: rgb(60, 255, 1);" onclick="location.href='../../../index.html'">&#127968;</button>
     <button style="color: rgb(60, 255, 1);" onclick="connectSerial()">Connect</button>
-    <button style="color: rgb(60, 255, 1);" onclick="myGameInstance.SendMessage('DeviceConnection', 'GetPortName', getSerialName())">Try</button>
-    <button style="color: rgb(60, 255, 1);" onclick="myGameInstance.SendMessage('DeviceConnection', 'GetPortName', 'hello')">Try1</button>
+    <button style="color: rgb(60, 255, 1);" onclick="myGameInstance.SendMessage('DeviceConnection', 'ReadLine', 'hello')">Try</button>
     Baud:
     <input type="text" id="baud" list="baudList" style="width: 10ch;" onclick="this.value = ''"
         onchange="localStorage.baud = this.value">
@@ -159,9 +160,9 @@
     <input type="text" id="lineToSend" style="width:calc(100% - 165px)">
     <button style="color: rgb(60, 255, 1);" onclick="sendSerialLine('hi')" style="width:45px">Send</button>
     <button style="color: rgb(60, 255, 1);" onclick="sendCharacterNumber()" style="width:100px">Send Char</button>
-    <br>
+    <br>-->
 
-    <label for="carriageReturn">
+    <!--<label for="carriageReturn">
         <input type="checkbox" id="carriageReturn" onclick="localStorage.carriageReturn = this.checked;" checked>send
         with
         /r
@@ -178,8 +179,7 @@
 
     <label for="echoOn">
         <input type="checkbox" id="echoOn" onclick="localStorage.echoOn = this.checked;" checked>echo
-    </label>
-
+    </label>-->
 
     <br>
     <div id="terminal"></div>

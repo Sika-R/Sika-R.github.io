@@ -99,59 +99,6 @@ terminal.attachCustomKeyEventHandler((arg) => {
   return true;
 });
 
-/*async function getSerialName(){
-  try {
-    if ("serial" in navigator) {
-      let portSettings = {};
-      var portSettings_deserialized = JSON.parse(
-        localStorage.getItem("portSettings")
-      );
-      if (portSettings_deserialized.flowControl != "none")
-        portSettings.flowControl = portSettings_deserialized.flowControl;
-      if (portSettings_deserialized.rtsCtsOn == "true")
-        portSettings.rtsCts = true;
-      if (portSettings_deserialized.dtrDsrOn == "true")
-        portSettings.dtrDsr = true;
-      if (portSettings_deserialized.dataBits != "0")
-        portSettings.dataBits = portSettings_deserialized.dataBits;
-      if (portSettings_deserialized.stopBits != "0")
-        portSettings.stopBits = portSettings_deserialized.stopBits;
-      if (portSettings_deserialized.parity != "none")
-        portSettings.parity = portSettings_deserialized.parity;
-      if (portSettings_deserialized.bufferSize != "0")
-        portSettings.bufferSize = portSettings_deserialized.bufferSize;
-
-      // The Web Serial API is supported.
-      // Prompt user to select any serial port.
-      if (Object.keys(portSettings).length > 0) {
-        port = port.open({
-          baudRate: document.getElementById("baud").value,
-          portSettings
-        });
-        console.log(port.comName);
-        return port.name;
-      } else {
-        port = await navigator.serial.requestPort();
-        await port.open({ baudRate: document.getElementById("baud").value });
-        console.log(port.getInfo().usbVendorId);
-        console.log(port.getInfo().usbProductId);
-        return port.comName;
-      }
-    } else {
-      // The Web Serial API is not supported.
-      if (
-        window.confirm(
-          "The Web Serial API is not supported by your browser. Please use a better one. Do you want to continue?"
-        )
-      )
-        window.open("https://www.google.com/chrome/", "_blank");
-    }
-    return null
-  } catch (e) {
-    return null
-    alert("Serial Connection Failed" + e);
-  }
-}*/
 async function connectSerial() {
   try {
     if ("serial" in navigator) {
@@ -332,13 +279,13 @@ async function sendSerialLine(str) {
   dataToSend = str;
   lineHistory.unshift(dataToSend);
   historyIndex = -1; // No history entry selected
-  if (document.getElementById("carriageReturn").checked == true)
-    dataToSend = dataToSend + "\r";
-  if (document.getElementById("addLine").checked == true)
-    dataToSend = dataToSend + "\n";
-  if (document.getElementById("echoOn").checked == true)
-    if (dataToSend.trim().startsWith("/clear")) terminal.clear();
-    else printToConsole(dataToSend, "36", false);
+  // if (document.getElementById("carriageReturn").checked == true)
+  dataToSend = dataToSend + "\r";
+  // if (document.getElementById("addLine").checked == true)
+  dataToSend = dataToSend + "\n";
+  // if (document.getElementById("echoOn").checked == true)
+  if (dataToSend.trim().startsWith("/clear")) terminal.clear();
+  else printToConsole(dataToSend, "36", false);
   if (dataToSend.trim().startsWith("/clear")) terminal.clear();
   if (dataToSend.trim().startsWith("/neofetch"))
     printToConsoleln(neofetch_data, 32, false);
