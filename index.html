@@ -44,6 +44,7 @@
       }
       function htmlReadFromPort(str) {
         myGameInstance.SendMessage('DeviceConnection (1)', 'ReadLine', str);
+        myGameInstance.SendMessage('DeviceConnection', 'ReadLine', str);
         // readFromPort()
       }
 
@@ -107,8 +108,8 @@
         config.devicePixelRatio = 1;
         unityShowBanner('WebGL builds are not supported on mobile devices.');
       } else {
-        canvas.style.width = "960px";
-        canvas.style.height = "540px";
+        canvas.style.width = "1440px";
+        canvas.style.height = "810px";
       }
       loadingBar.style.display = "block";
 
