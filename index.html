@@ -43,7 +43,6 @@
         sendSerialLine(str)
       }
       function htmlReadFromPort(str) {
-        myGameInstance.SendMessage('DeviceConnection (1)', 'ReadLine', str);
         myGameInstance.SendMessage('DeviceConnection', 'ReadLine', str);
         // readFromPort()
       }
