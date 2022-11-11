@@ -437,72 +437,7 @@ function scrollHistory(direction) {
     terminal.clear();
   }
 }
-document
-  .getElementById("lineToSend")
-  .addEventListener("keyup", async function (event) {
-    if (event.keyCode === 13) {
-      sendSerialLine();
-    } else if (event.keyCode === 38) {
-      // Key up
-      scrollHistory(1);
-    } else if (event.keyCode === 40) {
-      // Key down
-      scrollHistory(-1);
-    }
-  });
-navigator.serial.addEventListener("connect", (event) => {
-  // TODO: Automatically open event.target or warn user a port is available.
-  port = event.target;
-  port.open();
-  port.readable.addEventListener("abort", () => {
-    console.log("[port.readable] ABORT");
-  });
-  port.readable.addEventListener("error", () => {
-    console.log("[port.readable] ERROR");
-  });
-  port.readable.addEventListener("open", () => {
-    console.log("[port.readable] OPEN");
-  });
-  port.readable.addEventListener("close", () => {
-    console.log("[port.readable] CLOSE");
-  });
-  port.readable.addEventListener("readable", () => {
-    console.log("[port.readable] READABLE");
-  });
-  port.readable.addEventListener("data", () => {
-    console.log("[port.readable] DATA");
-  });
-  port.readable.addEventListener("end", () => {
-    console.log("[port.readable] END");
-  });
-});
 
-navigator.serial.addEventListener("disconnect", (event) => {
-  // TODO: Remove |event.target| from the UI.
-  port = event.target;
-  port.close();
-  port.readable.removeEventListener("abort", () => {
-    console.log("[port.readable] ABORT");
-  });
-  port.readable.removeEventListener("error", () => {
-    console.log("[port.readable] ERROR");
-  });
-  port.readable.removeEventListener("open", () => {
-    console.log("[port.readable] OPEN");
-  });
-  port.readable.removeEventListener("close", () => {
-    console.log("[port.readable] CLOSE");
-  });
-  port.readable.removeEventListener("readable", () => {
-    console.log("[port.readable] READABLE");
-  });
-  port.readable.removeEventListener("data", () => {
-    console.log("[port.readable] DATA");
-  });
-  port.readable.removeEventListener("end", () => {
-    console.log("[port.readable] END");
-  });
-});
 async function forgetPort() {
   if (port) {
     if ("serial" in navigator && "forget" in SerialPort.prototype) {
