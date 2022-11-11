@@ -103,23 +103,14 @@ async function connectSerial() {
   try {
     if ("serial" in navigator) {
       let portSettings = {};
-      var portSettings_deserialized = JSON.parse(
-        localStorage.getItem("portSettings")
-      );
-      if (portSettings_deserialized.flowControl != "none")
-        portSettings.flowControl = portSettings_deserialized.flowControl;
-      if (portSettings_deserialized.rtsCtsOn == "true")
-        portSettings.rtsCts = true;
-      if (portSettings_deserialized.dtrDsrOn == "true")
-        portSettings.dtrDsr = true;
-      if (portSettings_deserialized.dataBits != "0")
-        portSettings.dataBits = portSettings_deserialized.dataBits;
-      if (portSettings_deserialized.stopBits != "0")
-        portSettings.stopBits = portSettings_deserialized.stopBits;
-      if (portSettings_deserialized.parity != "none")
-        portSettings.parity = portSettings_deserialized.parity;
-      if (portSettings_deserialized.bufferSize != "0")
-        portSettings.bufferSize = portSettings_deserialized.bufferSize;
+
+      portSettings.flowControl = "none";
+      portSettings.rtsCts = true;
+      portSettings.dtrDsr = true;
+      portSettings.dataBits = "0";
+      portSettings.stopBits = "0";
+      portSettings.parity = "none";
+      portSettings.bufferSize = "0";
 
       // The Web Serial API is supported.
       // Prompt user to select any serial port.
