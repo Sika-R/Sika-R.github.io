@@ -102,46 +102,29 @@ terminal.attachCustomKeyEventHandler((arg) => {
 async function connectSerial() {
   try {
     if ("serial" in navigator) {
-      let portSettings = {};
+      
+      port = await navigator.serial.requestPort();
+      // await port.open({ baudRate: document.getElementById("baud").value });
+      await port.open({ baudRate: 115200 });
+      let settings = {};
 
-      portSettings.flowControl = "none";
-      portSettings.rtsCts = true;
-      portSettings.dtrDsr = true;
-      portSettings.dataBits = "0";
-      portSettings.stopBits = "0";
-      portSettings.parity = "none";
-      portSettings.bufferSize = "0";
-
-      // The Web Serial API is supported.
-      // Prompt user to select any serial port.
-      if (Object.keys(portSettings).length > 0) {
-        port = await port.open({
-          baudRate: document.getElementById("baud").value,
-          portSettings
-        });
-      } else {
-        port = await navigator.serial.requestPort();
-        // await port.open({ baudRate: document.getElementById("baud").value });
-        await port.open({ baudRate: 115200 });
-        let settings = {};
-
-        if (localStorage.dtrOn == "true") settings.dataTerminalReady = true;
-        if (localStorage.rtsOn == "true") settings.requestToSend = true;
-        if (Object.keys(settings).length > 0) {
-          await port.setSignals(settings);
-          const signals = await port.getSignals();
-          console.log(`Clear To Send:       ${signals.clearToSend}`);
-          console.log(`Data Carrier Detect: ${signals.dataCarrierDetect}`);
-          console.log(`Data Set Ready:      ${signals.dataSetReady}`);
-          console.log(`Ring Indicator:      ${signals.ringIndicator}`);
-        }
-        textEncoder = new TextEncoderStream();
-        writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
-        writer = textEncoder.writable.getWriter();
-        await listenToPort();
-        // readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
-        // reader = textDecoder.readable.getReader();
+      if (localStorage.dtrOn == "true") settings.dataTerminalReady = true;
+      if (localStorage.rtsOn == "true") settings.requestToSend = true;
+      if (Object.keys(settings).length > 0) {
+        await port.setSignals(settings);
+        const signals = await port.getSignals();
+        console.log(`Clear To Send:       ${signals.clearToSend}`);
+        console.log(`Data Carrier Detect: ${signals.dataCarrierDetect}`);
+        console.log(`Data Set Ready:      ${signals.dataSetReady}`);
+        console.log(`Ring Indicator:      ${signals.ringIndicator}`);
       }
+      textEncoder = new TextEncoderStream();
+      writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
+      writer = textEncoder.writable.getWriter();
+      await listenToPort();
+      // readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+      // reader = textDecoder.readable.getReader();
+      
     } else {
       // The Web Serial API is not supported.
       if (
